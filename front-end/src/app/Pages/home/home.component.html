@@ -1,1 +1,119 @@
-<p>home works!</p>
+<div class="flex h-screen bg-green-300">
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <header class=" bg-violet-800 p-4">
+<!--      <div class="flex">Left</div>-->
+<!--      <div class="flex">Right</div>-->
+      <app-header></app-header>
+
+    </header>
+    <div class="flex h-full">
+      <nav class="flex w-2/5 flex-col w-full overflow-x-hidden overflow-y-auto mb-14 bg-gray-200">
+        <div class="flex w-full mx-auto px-6 py-8">
+          <div class="flex flex-col w-full h-full mb-12 text-gray-900 text-xl">
+            <!-- Card 1 -->
+            <app-job-offer-card  *ngFor="let jobOffer of jobOffers" [jo]="jobOffer" (viewDetails)="viewOfferDetails($event)"></app-job-offer-card>
+<!--            <div *ngFor="let jo of jobOffers" (click)="viewOfferDetails(jo.id)" class="w-[21rem] my-2 border-2 border-gray-500 rounded-xl hover:bg-gray-50">
+
+              <div class="grid grid-cols-6 p-5 gap-y-2">
+                &lt;!&ndash; Profile Picture &ndash;&gt;
+                <div class="mt-5">
+                  <img src="https://www.marocannonces.com/geo_templates/marocannonces/external/images/icon-no-photo.jpg" class="max-w-16 max-h-16 rounded-full" />
+                </div>
+
+                &lt;!&ndash; Description &ndash;&gt;
+                <div class="col-span-5 md:col-span-4 ml-4">
+
+                  <p class="text-sky-500 my-1 font-bold text-xs">{{jo.rh.companyName}}</p>
+
+                  <p class="text-gray-600 font-bold">{{jo.title}}</p>
+
+                  <p class="text-gray-400">{{jo.city}}</p>
+
+                  <p class="text-gray-400">{{jo.degree}}</p>
+
+                </div>
+
+                &lt;!&ndash; Price &ndash;&gt;
+                <div *ngIf="jo.salary != null" class="flex col-start-2 ml-4 md:col-start-auto md:ml-0 md:justify-end">
+                  <p class="rounded-lg text-sky-500 font-bold bg-sky-100  py-1 px-3 text-sm w-fit h-fit">${{jo.salary}}</p>
+                </div>
+
+              </div>
+
+            </div>-->
+          </div>
+        </div>
+      </nav>
+      <main class="flex flex-col w-full bg-white ">
+        <div class="flex w-full h-screen mx-auto ">
+          <div *ngIf="viewOffer"  class="flex flex-col w-full h-screen text-gray-900 text-xl">
+            <!-- component -->
+            <app-job-offer-details [viewJo]="viewOffer"></app-job-offer-details>
+<!--
+            <div  class="bg-gray-100">
+              <section>
+                <section class="text-gray-600 body-font">
+                  <div class="container p-5 mx-auto">
+                    <div class="p-5 bg-white flex items-center mx-auto border-b   border-gray-200 rounded-lg sm:flex-row flex-col">
+                      <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center flex-shrink-0">
+                        <img
+                          src="https://www.marocannonces.com/geo_templates/marocannonces/external/images/icon-no-photo.jpg"/>
+                      </div>
+                      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                        <h1 class="text-black text-2xl title-font font-bold mb-2">{{viewOffer.title}}</h1>
+                        <p class="leading-relaxed text-base">{{viewOffer.description}}</p>
+                        <div class="py-4">
+                          <div class=" inline-block mr-2" >
+                            <div class="flex  pr-2 h-full items-center">
+                              <svg class="text-yellow-500 w-6 h-6 mr-1"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M9 12l2 2l4 -4" />
+                              </svg>
+                              <p class="title-font font-medium">{{viewOffer.profileId}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="md:flex font-bold text-gray-800">
+                          <div class="w-full md:w-1/2 flex space-x-3">
+                            <div class="w-1/2">
+                              <h2 class="text-gray-500">City</h2>
+                              <p >{{viewOffer.city}}</p>
+                            </div>
+                            <div class="w-1/2">
+                              <h2 class="text-gray-500">Degree</h2>
+                              <p>description</p>
+                            </div>
+                          </div>
+                          <div class="w-full md:w-1/2 flex space-x-3">
+                            <div class="w-1/2">
+                              <h2 class="text-gray-500">Get In Touch</h2>
+                              <p>{{viewOffer.rh.email}}</p>
+                              <p>{{viewOffer.rh.phoneNum}}</p>
+                            </div>
+                            <div class="w-1/2">
+                              <h2 class="text-gray-500">Salary</h2>
+                              <p>{{viewOffer.salary? "$"+viewOffer.salary:"to discuss"}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+-->
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+</div>
+

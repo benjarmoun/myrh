@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JobOfferService {
@@ -45,6 +47,31 @@ public class JobOfferService {
             return true;
         }else
             return false;
+    }
+
+    public List<JobOffer> acceptedJobOffers(){
+        return jobOfferRepository.findAll()
+                .stream()
+                .filter(offer -> offer.isStatus())
+                .collect(Collectors.toList());
+    }
+    public List<JobOffer> pendingJobOffers(){
+        return jobOfferRepository.findAll()
+                .stream()
+                .filter(offer -> !offer.isStatus())
+                .collect(Collectors.toList());
+    }
+
+    public List<JobOffer> acceptedJobOfferById(int id ){
+        return jobOfferRepository.findById(id)
+                .stream()
+                .filter(offer -> offer.isStatus())
+                .collect(Collectors.toList());
+    }
+    public List<JobOffer> jobOfferById(int id ){
+        return jobOfferRepository.findById(id)
+                .stream()
+                .collect(Collectors.toList());
     }
 
     public void acceptJobOffer(int id){

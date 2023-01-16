@@ -29,14 +29,16 @@ public class AuthController {
 //    private final LoggedIn loggedIn;
 
     @PostMapping("agent")
-    public ResponseEntity<String> agentAuthentication(
+    public ResponseEntity<Object> agentAuthentication(
             @RequestBody AuthenticationRequest request
     ){
 
         setAuthenticationManager(request.getEmail(), request.getPassword());
         final UserDetails user = agentService.findByEmail(request.getEmail());
         if(user != null){
-            return ResponseEntity.ok(jwtUtils.generateToken(user));
+            LoggedIn loggedIn = new LoggedIn();
+            loggedIn.setToken(jwtUtils.generateToken(user));
+            return ResponseEntity.ok(loggedIn);
         }
         return ResponseEntity.status(400).body("Some error has occurred");
     }
@@ -45,17 +47,13 @@ public class AuthController {
     public ResponseEntity<Object> rhAuthentication(
             @RequestBody AuthenticationRequest request
     ){
-        System.out.println("yess");
         setAuthenticationManager(request.getEmail(), request.getPassword());
         final UserDetails userRh = rhService.findByEmail(request.getEmail());
         if(userRh != null){
             LoggedIn loggedIn = new LoggedIn();
             ResHuman rh = rhService.findRhByEmail(request.getEmail());
-            System.out.println("rh"+ rhService.findRhByEmail(request.getEmail()));
             loggedIn.setToken(jwtUtils.generateToken(userRh));
             loggedIn.setRh(rh);
-            System.out.println("email "+ request.getEmail());
-            System.out.println("rr"+ loggedIn);
             return ResponseEntity.ok(loggedIn);
         }
         return ResponseEntity.status(400).body(null);

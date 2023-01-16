@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Profile } from 'src/app/models/profile';
+import { ProfileId } from 'src/app/models/profile';
 import { ProfileService } from 'src/app/services/profile.service';
 import {HttpErrorResponse} from "@angular/common/http";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,16 +19,16 @@ export class JobOfferFormComponent {
   degree!: string;
   salary!: number;
 
-  profiles!: Profile[]
+  profiles!: ProfileId[]
 
 
-  constructor(private http: HttpClient, private profileService: ProfileService) {}
+  constructor(private http: HttpClient, private profileService: ProfileService, private router: Router) {}
 
   ngOnInit() {
+    if(localStorage.getItem("token") == null){
+      this.router.navigate(["/login"]).then();
+    }else
     this.fetchAllProfiles();
-    // this.profiles.forEach(function (value) {
-    //   console.log(value);
-    // });
   }
 
   jobOffer() {
@@ -49,7 +50,12 @@ export class JobOfferFormComponent {
 
     };
 
-    this.http.post('http://localhost:8080/rh/addJobOffer', formData,{headers: headers}).subscribe();
+    this.http.post('http://localhost:8080/rh/addJobOffer', formData,{headers: headers}).subscribe(
+      response =>{
+        // @ts-ignore
+        console.log(response['status'])
+      }
+    );
   }
 
 
@@ -57,7 +63,7 @@ export class JobOfferFormComponent {
 
   fetchAllProfiles() {
     this.profileService.getAllProfiles().subscribe(
-      (res: Profile[]) => {
+      (res: ProfileId[]) => {
         this.profiles = res;
       }, (error: HttpErrorResponse) => {
         console.log(error.message)

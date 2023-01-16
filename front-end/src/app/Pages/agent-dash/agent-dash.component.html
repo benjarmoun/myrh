@@ -1,0 +1,59 @@
+<div class="flex h-screen bg-green-300">
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <header class=" bg-violet-800 p-4">
+      <!--      <div class="flex">Left</div>-->
+      <!--      <div class="flex">Right</div>-->
+      <app-header></app-header>
+
+    </header>
+    <div class="flex h-full">
+      <nav class="flex w-2/5 flex-col w-full overflow-x-hidden overflow-y-auto mb-14 bg-gray-200">
+        <div class="flex w-full mx-auto px-6 py-8">
+          <div class="flex flex-col w-full h-full text-gray-900 text-xl">
+            <!-- Card 1 -->
+            <app-job-offer-card  *ngFor="let jobOffer of jobOffers" [jo]="jobOffer" (viewDetails)="viewOfferDetails($event)"></app-job-offer-card>
+            <!--            <div *ngFor="let jo of jobOffers" (click)="viewOfferDetails(jo.id)" class="w-[21rem] my-2 border-2 border-gray-500 rounded-xl hover:bg-gray-50">
+
+                          <div class="grid grid-cols-6 p-5 gap-y-2">
+                            &lt;!&ndash; Profile Picture &ndash;&gt;
+                            <div class="mt-5">
+                              <img src="https://www.marocannonces.com/geo_templates/marocannonces/external/images/icon-no-photo.jpg" class="max-w-16 max-h-16 rounded-full" />
+                            </div>
+
+                            &lt;!&ndash; Description &ndash;&gt;
+                            <div class="col-span-5 md:col-span-4 ml-4">
+
+                              <p class="text-sky-500 my-1 font-bold text-xs">{{jo.rh.companyName}}</p>
+
+                              <p class="text-gray-600 font-bold">{{jo.title}}</p>
+
+                              <p class="text-gray-400">{{jo.city}}</p>
+
+                              <p class="text-gray-400">{{jo.degree}}</p>
+
+                            </div>
+
+                            &lt;!&ndash; Price &ndash;&gt;
+                            <div *ngIf="jo.salary != null" class="flex col-start-2 ml-4 md:col-start-auto md:ml-0 md:justify-end">
+                              <p class="rounded-lg text-sky-500 font-bold bg-sky-100  py-1 px-3 text-sm w-fit h-fit">${{jo.salary}}</p>
+                            </div>
+
+                          </div>
+
+                        </div>-->
+          </div>
+        </div>
+      </nav>
+      <main class="flex flex-col w-full bg-white ">
+        <div class="flex w-full h-screen mx-auto ">
+          <div *ngIf="viewOffer"  class="flex flex-col w-full h-screen text-gray-900 text-xl">
+            <!-- component -->
+            <app-job-offer-details [viewJo]="viewOffer"></app-job-offer-details>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+</div>
+

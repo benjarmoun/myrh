@@ -45,7 +45,7 @@ public class RhController {
         rh.setPassword(BCrypt.hashpw(rh.getPassword(), BCrypt.gensalt(10)));
         codeVer = generateVerifiedCode();
         System.out.println(codeVer);
-//        sendMail.sendVerificationCode(rh.getEmail(), "Code verification", "Code: "+codeVer+" .");
+        sendMail.sendVerificationCode("benjarmoun123@gmail.com", "Code verification", "Code: "+codeVer+" .");
         return ResponseEntity.ok("Code verification has been sent to you.");
     }
 

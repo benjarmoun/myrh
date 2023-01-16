@@ -1,4 +1,4 @@
-export interface Profile {
-  id: number,
+export interface ProfileId {
+  id: any,
   name: string
 }

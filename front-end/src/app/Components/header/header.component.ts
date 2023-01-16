@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,18 +9,29 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class HeaderComponent implements OnInit{
   @Input() text!: String;
-
+   isLoged:boolean = false;
+   isLogedAg:boolean = false;
   title: String = "hello world";
-  constructor() {}
-  ngOnInit(): void {}
-
-  buttonEvent(){
-    console.log("botona tclicat parent")
+  constructor(private router: Router) {}
+  ngOnInit(){
+    if(localStorage.getItem("token") != null){
+      this.isLoged = true;
+    }
+    if(localStorage.getItem("agToken") != null){
+      console.log(true)
+      this.isLogedAg = true;
+    }
   }
-  buttonEvents(){
-    console.log("botona tclicat")
+  logout(){
+    localStorage.removeItem("token");
+    this.isLoged = false;
+    this.router.navigate(["/"]).then();
   }
-  deleteTask(s:String){
+  logoutAg(){
+    localStorage.removeItem("agToken");
+    this.isLogedAg = false;
+    this.router.navigate(["/agent/login"]).then();
+  }
 
-}
+
 }

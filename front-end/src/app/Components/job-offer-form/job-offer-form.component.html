@@ -1,3 +1,7 @@
+<header class=" bg-violet-800 p-4">
+  <app-header></app-header>
+</header>
+
 <div class="bg-white shadow-md rounded m-5 px-8 pt-6 pb-8 flex flex-col ">
   <form (ngSubmit)="jobOffer()">
     <div class="-mx-3 md:flex mb-6">
@@ -59,28 +63,7 @@
       </div>
     </div>
 
-    <!--    Product info -->
-    <p class="text-2xl font-medium mb-6 text-gray-900 dark:text-white">Products</p>
-    <div class="-mx-3 md:flex mb-2">
-      <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="descriptions">
-          Description
-        </label>
-        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="descriptions" name="description" type="text"  placeholder="Description">
-      </div>
-      <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="quantity">
-          Quantity
-        </label>
-        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="quantity" name="quantity" type="text"  placeholder="Quantity">
-      </div>
-      <div class="md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="unitPrice">
-          Unit Price
-        </label>
-        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="unitPrice" name="unitPrice" type="text"  placeholder="Unit Price">
-      </div>
-    </div>
+
     <button type="submit" class="inline-block rounded border border-indigo-600 bg-indigo-600 w-32 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">Submit</button>
   </form>
 </div>

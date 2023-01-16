@@ -1,0 +1,16 @@
+<div class="bg-white shadow-md rounded m-16 px-8 pt-6 pb-8 flex flex-col ">
+  <form (ngSubmit)="confirm()">
+    <div class="mx-3  mb-6">
+        <h2 class="text-grey-darker text-lg font-bold p-4">A confirmation code has been sent to your email.</h2>
+      <div class="md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="code">
+          Code:
+        </label>
+        <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="code" name="code" type="number" [(ngModel)]="code" placeholder="Code">
+      </div>
+    </div>
+
+
+    <button type="submit" class=" mx-6 inline-block rounded border border-indigo-600 bg-indigo-600 w-32 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">Submit</button>
+  </form>
+</div>

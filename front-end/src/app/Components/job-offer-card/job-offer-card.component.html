@@ -1,0 +1,29 @@
+<div (click)="setOfferDetails(jo.id)" class="w-[21rem] my-2  border-2 border-gray-500 rounded-xl hover:bg-gray-50">
+
+  <div class="grid grid-cols-6 p-5 gap-y-2">
+    <!-- Profile Picture -->
+    <div class="mt-5">
+      <img src="https://www.marocannonces.com/geo_templates/marocannonces/external/images/icon-no-photo.jpg" class="max-w-16 max-h-16 rounded-full" />
+    </div>
+
+    <!-- Description -->
+    <div class="col-span-5 md:col-span-4 ml-4">
+
+      <p class="text-sky-500 my-1 font-bold text-xs">{{jo.rh.companyName}}</p>
+
+      <p class="text-gray-600 font-bold">{{jo.title}}</p>
+
+      <p class="text-gray-400">{{jo.city}}</p>
+
+      <p class="text-gray-400">{{jo.degree}}</p>
+
+    </div>
+
+    <!-- Price -->
+    <div *ngIf="jo.salary != null" class="flex col-start-2 ml-4 md:col-start-auto md:ml-0 md:justify-end">
+      <p class="rounded-lg text-sky-500 font-bold bg-sky-100  py-1 px-3 text-sm w-fit h-fit">${{jo.salary}}</p>
+    </div>
+
+  </div>
+
+</div>

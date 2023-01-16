@@ -2,6 +2,7 @@ package com.MyRH.MyRH.Controller;
 
 
 import com.MyRH.MyRH.Entities.JobOffer;
+import com.MyRH.MyRH.Helpers.SendMail;
 import com.MyRH.MyRH.Services.JobOfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 public class AgentController {
 
     private final JobOfferService jobOfferService;
+    private final SendMail sendMail;
+
 
     @GetMapping("jobOffers")
     public ResponseEntity<List> getAll(){
@@ -31,6 +34,9 @@ public class AgentController {
         if(jobOffer != null){
             if(!jobOffer.isStatus()){
                 jobOfferService.acceptJobOffer(Integer.valueOf(jobOfferId));
+                System.out.println("email sent");
+                sendMail.sendVerificationCode("benjarmoun123@gmail.com", "Job offer confirmed", "Your job offer: "+jobOffer.getTitle()+" has been posted.");
+
 //                send email after confirmation
                 return ResponseEntity.ok("Job offer has been accepted successfully.");
             }

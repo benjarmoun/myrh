@@ -15,22 +15,26 @@ export class LoginComponent {
 
   constructor(private http: HttpClient,
               private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem("token") != null){
+      this.router.navigate(["/"]).then();
+    }
+  }
   login() {
-    console.log(this.email)
-    console.log(this.password)
 
     const formData = {
-      "email": "email",
-      "password": "password"
+      "email": this.email,
+      "password": this.password
     };
 
     this.http.post('http://localhost:8080/auth/rh', formData)
       .subscribe(response => {
-        console.log(response)
+        console.log("response")
       // @ts-ignore
         const token = response['token'];
       localStorage.setItem('token', token);
-        this.router.navigate(['/form']);
+        this.router.navigate(['/']);
     });
   }
 

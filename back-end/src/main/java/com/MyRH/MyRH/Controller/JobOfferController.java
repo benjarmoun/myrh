@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("rh")
+//@RequestMapping("rh")
 @RestController
 public class JobOfferController {
 
@@ -31,7 +31,7 @@ public class JobOfferController {
 
 
 
-    @PostMapping("addJobOffer")
+    @PostMapping("rh/addJobOffer")
     public ResponseEntity<String> createJobOffer(HttpServletRequest req ,@RequestBody JobOfferRequest request){
         JobOffer jobOffer = new JobOffer(request.getTitle(), request.getDescription(),profileService.findById(request.getProfileId()), request.getCity(), request.getDegree(), request.getSalary(), false, rhService.findRhByEmail(authUserInfo.getEmail(req)));
         if(jobOfferService.save(jobOffer) !=null){
@@ -40,11 +40,51 @@ public class JobOfferController {
             return ResponseEntity.status(400).body("Job offer creation failed, Retry later");
     }
 
-    @GetMapping("deleteJobOffer/{id}")
+    @GetMapping("rh/deleteJobOffer/{id}")
     public ResponseEntity<String> deleteJobOffer(@PathVariable String id){
         if(jobOfferService.deleteJobOfferById(Integer.parseInt(id))){
             return ResponseEntity.ok("Job Offer deleted successfully");
         }else
             return ResponseEntity.status(400).body("Job offer delete failed, Retry later");
     }
+
+    @GetMapping("agent/allJobOffers")
+    public ResponseEntity<Object> getAllJobOffer(){
+        if(jobOfferService.findAll() != null){
+            return ResponseEntity.ok(jobOfferService.findAll());
+        }else
+            return ResponseEntity.status(400).body("No job offers found!!");
+    }
+
+    @GetMapping("jobOffers")
+    public ResponseEntity<Object> getAcceptedJobOffers(){
+        if(jobOfferService.acceptedJobOffers() != null){
+            return ResponseEntity.ok(jobOfferService.acceptedJobOffers());
+        }else
+            return ResponseEntity.status(400).body("No job offers found!!");
+    }
+    @GetMapping("agent/pendingJobOffers")
+    public ResponseEntity<Object> getPendingJobOffers(){
+        if(jobOfferService.pendingJobOffers() != null){
+            return ResponseEntity.ok(jobOfferService.pendingJobOffers());
+        }else
+            return ResponseEntity.status(400).body("No job offers found!!");
+    }
+
+    @GetMapping("jobOffer/{id}")
+    public ResponseEntity<Object> getAcceptedJobOfferById(@PathVariable int id){
+        if(jobOfferService.acceptedJobOfferById(id) != null){
+            return ResponseEntity.ok(jobOfferService.acceptedJobOfferById(id));
+        }else
+            return ResponseEntity.status(400).body("No job offer found!!");
+    }
+
+    @GetMapping("agent/jobOffer/{id}")
+    public ResponseEntity<Object> getJobOfferById(@PathVariable int id){
+        if(jobOfferService.jobOfferById(id) != null){
+            return ResponseEntity.ok(jobOfferService.jobOfferById(id));
+        }else
+            return ResponseEntity.status(400).body("No job offer found!!");
+    }
+
 }

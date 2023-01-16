@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 // import {environment} from "../../../env/environment";
 import {Observable} from "rxjs";
-import {Profile} from "../models/profile";
+import {ProfileId} from "../models/profile";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient) {}
 
-  public getAllProfiles(): Observable<Profile[]> {
-    return this.http.get<Profile[]>(`http://localhost:8080/profiles`);
+  public getAllProfiles(): Observable<ProfileId[]> {
+    return this.http.get<ProfileId[]>(`http://localhost:8080/profiles`);
   }
 }
