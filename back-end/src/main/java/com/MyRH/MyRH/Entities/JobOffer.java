@@ -59,7 +59,4 @@ public class JobOffer {
         this.status = status;
         this.rh = rh;
     }
-    // Getters and setters for each attribute
-    // Constructor(s)
-    // Other methods, if desired
 }

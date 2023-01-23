@@ -31,8 +31,7 @@ export class JobOfferDetailsComponent implements OnInit{
   acceptJobOffer(id: number){
     // @ts-ignore
     this.offerService.acceptOffer(localStorage.getItem("agToken"),id).subscribe();
-    this.router.navigate(['/agent/dash']);
-    this.cdr.detectChanges();
+    
 
   }
 
